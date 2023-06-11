@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.AccountDto;
-import com.example.demo.home.dto.AccountDto2;
+import com.example.demo.entity.Book;
 import com.example.demo.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
+    // front -> filter, interceptor -> controller -> (facade 옵션) -> service -> repository -> service -> controller -> front
 
-
+    /**
+     * controller : header 판단,
+     * service : 서비스 로직(배너, 상품 리스트, 베스트, 등등 컨텐츠)
+     * repository : db(sql 조회)
+     */
     @GetMapping({"","/"})
     public ResponseEntity accountList(){
         List<AccountDto> accountList = accountService.accountList();
